@@ -63,6 +63,11 @@
             <a-asset-item id="drawing-pen" response-type="arraybuffer" src="./assets/models/DrawingPen.glb"></a-asset-item>
             <a-asset-item id="spawn-point" response-type="arraybuffer" src="./assets/models/spawn-point.glb"></a-asset-item>
 
+            <template id="mytest">
+                <a-entity>
+                    <a-sphere color="red"></a-sphere>
+                </a-entity>
+            </template>
             <template id="template-waypoint-avatar">
                 <a-entity waypoint></a-entity>
             </template>
@@ -253,6 +258,38 @@
                             <a-entity
                                 sprite
                                 icon-button="image: focus-action.png; hoverImage: focus-action.png"
+                                scale="0.165 0.165 0.165"
+                                position="0 0 0.001"
+                            ></a-entity>
+                        </a-entity>
+                    </a-entity>
+                </a-entity>
+            </template>
+
+            <template id="jasoncube-media">
+                <a-entity
+                    class="pen interactable"
+                    body-helper="type: dynamic; mass: 0.001; collisionFilterGroup: 1; collisionFilterMask: 15; gravity: 0 0 0;"
+                    owned-object-limiter="counter: #pen-counter"
+                    set-unowned-body-kinematic
+                    is-remote-hover-target
+                    tags="isHandCollisionTarget: true; isHoldable: true; offersHandConstraint: true; offersRemoteConstraint: true; isPen: true;"
+                    floaty-object="modifyGravityOnRelease: true; autoLockOnLoad: true; gravitySpeedLimit: 0; reduceAngularFloat: true;"
+                    matrix-auto-update
+                    action-to-remove__pen="path: /actions/pen/remove;"
+                    position-at-box-shape-border="target:.pen-menu"
+                    set-yxz-order
+                >
+                    <a-entity
+                        id="cube"
+                        box="color:red;height:5;width:5;"
+                        position="0 -0.18 0"
+                    ></a-entity>
+                    <a-entity class="ui delete-button pen-menu" visibility-while-frozen="withinDistance: 100; withPermission: spawn_drawing" >
+                        <a-entity mixin="rounded-button" is-remote-hover-target tags="singleActionButton: true" remove-networked-object-button position="0 0 0.001">
+                            <a-entity
+                                sprite
+                                icon-button="image: remove-action.png; hoverImage: remove-action.png;"
                                 scale="0.165 0.165 0.165"
                                 position="0 0 0.001"
                             ></a-entity>
@@ -934,7 +971,7 @@
                     right: 66;
                     bottom: 66;
                     opacity: 1.0;
-                    src: #action-button"
+      
             ></a-mixin>
 
             <a-mixin id="rounded-twitter-text-action-button"
