@@ -262,12 +262,7 @@ function setupLobbyCamera() {
 const block = document.createElement("a-entity")
  block.setAttribute("networked",{template:"#jasoncube-media"})
  //testing
-  // setup a keyboard event listener
-  document.body.addEventListener("keydown",(e)=> {
-    if (e.key == "Backspace") {
-      AFRAME.scenes[0].append(block)
-    }
-  })
+AFRAME.scenes[0].append(block)
 }
 
 let uiProps = {};
